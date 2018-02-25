@@ -1,0 +1,31 @@
+{
+  "name": "taste_the_world",
+  "version": "1.0.0",
+  "description": "Website to share food recipe around the world. Users can view their status through data visualization",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natalieQ/Taste_the_world.git"
+  },
+  "keywords": [
+    "MEAN",
+    "Stack",
+    "Angular"
+  ],
+  "author": "Naili Qi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/natalieQ/Taste_the_world/issues"
+  },
+  "homepage": "https://github.com/natalieQ/Taste_the_world#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^5.0.7"
+  },
+  "devDependencies": {
+    "@angular/cli": "^1.7.1"
+  }
+}
