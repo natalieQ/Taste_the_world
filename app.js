@@ -1,9 +1,13 @@
 const express = require('express');
+const router = express.Router();
 const app = express();
 const mongoose = require('mongoose');
 const config = require('./config/database');
 const path = require('path');
+const authentication = require('./routes/authentication')(router);
+const bodyParser = require('body-parser');
 
+//database config
 mongoose.Promise = global.Promise;
 mongoose.connect(config.url, (err) => {
     if (err){
@@ -13,7 +17,12 @@ mongoose.connect(config.url, (err) => {
     }
 });
 
+//Middleware setup
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/client/dist/'));
+app.use('/authentication', authentication);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/dist/index.html'));
