@@ -17,9 +17,10 @@ mongoose.connect(config.url, (err) => {
     }
 });
 
-//Middleware setup
+// parse application/x-www-form-urlencoded 
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// parse application/json 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/client/dist/'));
 app.use('/authentication', authentication);
