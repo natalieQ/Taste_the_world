@@ -15,9 +15,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" ><a routerLink="/dashboard" >Dashboard</a></li>
-        <li><a href="#">My Recipe</a></li>
-        <li><a href="#">My Taste Profile</a></li>
-        <li><a href="#">Sign in</a></li>
+        <li><a routerLink="/profile" >My Profile</a></li>
+        <!-- <li><a href="#">My Taste Profile</a></li> -->
+        <li><a routerLink="/login" >Log in</a></li>
+        <li><a href="# "(click)="onLogout()" >Log out</a></li>
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" ><a routerLink="/register" >Register</a></li>
       </ul>
     </div><!--/.nav-collapse -->

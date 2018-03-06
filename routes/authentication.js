@@ -1,4 +1,6 @@
 const User = require('../models/user');
+const config = require('../config/database');
+const jwt = require('jsonwebtoken');
 
 module.exports = ( router ) => {
 
@@ -80,12 +82,79 @@ module.exports = ( router ) => {
                     if (user){
                         res.json({ success: false, message: "Username already exists."});
                     }else{
-                        res.json({ success: true, message: "Username is available."});
+                        res.json({ success: false, message: "No token provided"});
                     }
                 }
             });
         }
     });
+
+    // login route
+    router.post('/login', (req, res) =>{
+        if (!req.body.username) {
+            res.json({ success: false, message: "Username is not provided"});
+        } else{
+            if (!req.body.password) {
+                res.json({ success: false, message: "Password is not provided"});
+            } else {
+               User.findOne({ username: req.body.username.toLowerCase() }, (err, user) =>{
+                   if (err){
+                       res.json({ success: false, message: err });
+                   } else{
+                       if (!user) {
+                        res.json({ success: false, message: "Username not found"});
+                       } else {
+                            const validPassword = user.comparePassword(req.body.password);
+                            if(!validPassword) {
+                                res.json({ success: false, message: "Password does not match"});
+                            }else{
+                                // create and return token to frontend
+                                const token = jwt.sign({ userId: user._id }, config.secret, { expiresIn: '24h' });
+                                res.json({ success: true, message: "Login success", token: token, user: { username: user.username } });
+                            }
+                       }
+                   }
+               });
+            }
+        }
+    });
+
+    //middleware to get header and decode token
+    //any routes after that will implement the middleware
+    router.use((req, res, next) => {
+        const token = req.headers['authorization']; // Create token found in headers
+        // Check if token was found in headers
+        if (!token) {
+          res.json({ success: false, message: 'No token provided' }); 
+        } else {
+          // Verify the token is valid
+          jwt.verify(token, config.secret, (err, decoded) => {
+           
+            if (err) {
+              res.json({ success: false, message: 'Token invalid: ' + err }); // Return error for token validation
+            } else {
+              req.decoded = decoded; 
+              next(); 
+            }
+          });
+        }
+    });
+
+
+    router.get('/profile', (req, res) => {
+        // Search for user in database
+        User.findOne({ _id: req.decoded.userId }).select('username email').exec((err, user) => {     
+          if (err) {
+            res.json({ success: false, message: err }); 
+          } else {
+            if (!user) {
+              res.json({ success: false, message: 'User not found' }); 
+            } else {
+              res.json({ success: true, user: user }); 
+            }
+          }
+        });
+      });
 
     return router;
 };
