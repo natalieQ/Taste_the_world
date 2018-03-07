@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { tokenNotExpired } from 'angular2-jwt';
+ 
 
 @Injectable()
 export class AuthService {
@@ -68,6 +70,11 @@ export class AuthService {
   getProfile() {
     this.createAuthenticationHeaders(); // Create headers and then send to backend
     return this.http.get(this.domain + '/authentication/profile', this.options).map(res => res.json());
+  }
+
+  //checking authentication to hide/show routing
+  loggedIn() {
+    return tokenNotExpired();
   }
 
 }
