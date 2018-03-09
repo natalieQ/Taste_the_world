@@ -125,7 +125,7 @@ module.exports = ( router ) => {
         const token = req.headers['authorization']; // Create token found in headers
         // Check if token was found in headers
         if (!token) {
-          res.json({ success: false, message: 'No token provided' }); 
+        //   res.json({ success: false, message: 'No token provided' }); 
         } else {
           // Verify the token is valid
           jwt.verify(token, config.secret, (err, decoded) => {
