@@ -5,6 +5,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AuthGuard } from './authguards/auth.guard';
+import { NoAuthGuard } from './authguards/noauth.guard';
 
 
 const appRoutes: Routes = [
@@ -12,16 +14,20 @@ const appRoutes: Routes = [
         component: HomeComponent
     },
     { path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthGuard]          //access when logged in
     },
     { path: 'register',
-        component: RegisterComponent
+        component: RegisterComponent,
+        canActivate: [NoAuthGuard]       //access when NOT logged in
     },
     { path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [NoAuthGuard]       //access when NOT logged in
     },
     { path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [AuthGuard]         //access when logged in
     },
     { path: '**', component: HomeComponent }
 ];

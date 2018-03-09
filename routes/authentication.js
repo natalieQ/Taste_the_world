@@ -82,7 +82,7 @@ module.exports = ( router ) => {
                     if (user){
                         res.json({ success: false, message: "Username already exists."});
                     }else{
-                        res.json({ success: false, message: "No token provided"});
+                        res.json({ success: true, message: "Username is available"});
                     }
                 }
             });
