@@ -5,6 +5,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RecipeComponent }from './components/recipe/recipe.component';
+
 import { AuthGuard } from './authguards/auth.guard';
 import { NoAuthGuard } from './authguards/noauth.guard';
 
@@ -27,6 +29,10 @@ const appRoutes: Routes = [
     },
     { path: 'profile',
         component: ProfileComponent,
+        canActivate: [AuthGuard]         //access when logged in
+    },
+    { path: 'recipe',
+        component: RecipeComponent,
         canActivate: [AuthGuard]         //access when logged in
     },
     { path: '**', component: HomeComponent }

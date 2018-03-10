@@ -14,6 +14,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
 import { AuthGuard } from './authguards/auth.guard';
 import { NoAuthGuard } from './authguards/noauth.guard';
+import { RecipeComponent } from './components/recipe/recipe.component';
+import { RecipeListComponent } from './components/recipe/recipe-list/recipe-list.component';
+import { RecipeDetailComponent } from './components/recipe/recipe-detail/recipe-detail.component';
+import { RecipeItemComponent } from './components/recipe/recipe-list/recipe-item/recipe-item.component';
 
 
 @NgModule({
@@ -24,7 +28,11 @@ import { NoAuthGuard } from './authguards/noauth.guard';
     DashboardComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    RecipeComponent,
+    RecipeListComponent,
+    RecipeDetailComponent,
+    RecipeItemComponent
   ],
   imports: [
     BrowserModule,
