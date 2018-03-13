@@ -121,24 +121,24 @@ module.exports = ( router ) => {
 
     //middleware to get header and decode token
     //any routes after that will implement the middleware
-    router.use((req, res, next) => {
-        const token = req.headers['authorization']; // Create token found in headers
-        // Check if token was found in headers
-        if (!token) {
-        //   res.json({ success: false, message: 'No token provided' }); 
-        } else {
-          // Verify the token is valid
-          jwt.verify(token, config.secret, (err, decoded) => {
+    // router.use((req, res, next) => {
+    //     const token = req.headers['authorization']; // Create token found in headers
+    //     // Check if token was found in headers
+    //     if (!token) {
+    //     //   res.json({ success: false, message: 'No token provided' }); 
+    //     } else {
+    //       // Verify the token is valid
+    //       jwt.verify(token, config.secret, (err, decoded) => {
            
-            if (err) {
-              res.json({ success: false, message: 'Token invalid: ' + err }); // Return error for token validation
-            } else {
-              req.decoded = decoded; 
-              next(); 
-            }
-          });
-        }
-    });
+    //         if (err) {
+    //           res.json({ success: false, message: 'Token invalid: ' + err }); // Return error for token validation
+    //         } else {
+    //           req.decoded = decoded; 
+    //           next(); 
+    //         }
+    //       });
+    //     }
+    // });
 
 
     router.get('/profile', (req, res) => {

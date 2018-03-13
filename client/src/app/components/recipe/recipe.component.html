@@ -17,6 +17,25 @@
 <br />
 <br />
 
+<!-- New Recipe Form -->
+<form [formGroup]="form" name="RecipeForm" (submit)="onRecipeSubmit()" *ngIf="newPost">
+  <!-- Recipe Name Input -->
+  <div class="form-group">
+    <label for="name">Recipe Name</label>
+    <div [ngClass]="{'has-success': form.controls.name.valid, 'has-error': form.controls.name.dirty && form.controls.name.errors}">
+      <input type="text" name="name" class="form-control" placeholder="Recipe Name" autocomplete="off" formControlName="name" />
+      <ul class="help-block">
+        <li *ngIf="form.controls.name.dirty && form.controls.name.errors?.required">Recipe name is required.</li>
+        <li *ngIf="(form.controls.name.dirty && form.controls.name.errors?.minlength) || (form.controls.name.dirty && form.controls.name.errors?.maxlength)">Max length: 50, Min length: 3</li>
+        <li *ngIf="form.controls.name.dirty && form.controls.name.errors?.validateName">Must be a letter or number</li>
+      </ul>
+    </div>
+  </div>
+  
+
+</form>
+<!-- End of Form -->
+
 <div *ngIf = "!newPost">
   <div class="panel panel-primary">
     <div class="panel panel-heading">

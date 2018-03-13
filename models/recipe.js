@@ -26,7 +26,7 @@ let alphaNumericNameChecker = (name) => {
 }
 
 //check description length
-let usernameLengthChecker = (description) => {
+let descriptionLengthChecker = (description) => {
     if(!description){
         return false;
     }else{
@@ -53,7 +53,7 @@ const nameValidators = [{
 // recipe description validators
 const descriptionValidators =[
     {
-      validator: descriptionValidators,
+      validator: descriptionLengthChecker,
       message: 'description must be at least 5 characters but no more than 500'
     }
 ];
