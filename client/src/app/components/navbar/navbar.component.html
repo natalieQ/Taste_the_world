@@ -17,7 +17,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/dashboard">Dashboard</a></li>
           <li><a *ngIf="authService.loggedIn()" routerLink="/profile">My Profile</a></li>
-          <li><a *ngIf="authService.loggedIn()" routerLink="/recipe">My Recipe</a></li>
+          <li><a *ngIf="authService.loggedIn()" routerLink="/recipe">View Recipes</a></li>
           <li><a *ngIf="!authService.loggedIn()" routerLink="/login">Login</a></li>
           <li><a *ngIf="authService.loggedIn()" href="#" (click)="onLogout()">Logout</a></li>
           <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/register">Register</a></li>
