@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,8 +18,7 @@ import { AuthGuard } from './authguards/auth.guard';
 import { NoAuthGuard } from './authguards/noauth.guard';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { RecipeListComponent } from './components/recipe/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './components/recipe/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './components/recipe/recipe-list/recipe-item/recipe-item.component';
+import { EditRecipeComponent } from './components/recipe/edit-recipe/edit-recipe.component';
 
 
 @NgModule({
@@ -32,12 +32,12 @@ import { RecipeItemComponent } from './components/recipe/recipe-list/recipe-item
     ProfileComponent,
     RecipeComponent,
     RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent
+    EditRecipeComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpModule,
     AppRoutingModule,
     FlashMessagesModule

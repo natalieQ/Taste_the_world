@@ -36,4 +36,16 @@ export class RecipeService {
     return this.http.get(this.domain + 'recipes/allRecipes', this.options).map(res => res.json());
   }
 
+  //retrieve single recipe by id
+  getSingleRecipe(id) {
+    this.createAuthenticationHeaders();
+    return this.http.get(this.domain + 'recipes/singleRecipe/' + id, this.options).map(res => res.json());
+  }
+
+  //edit and update recipe
+  editRecipe(recipe) {
+    this.createAuthenticationHeaders();
+    return this.http.put(this.domain + 'recipes/updateRecipe', recipe, this.options).map(res => res.json());
+  }
+
 }
