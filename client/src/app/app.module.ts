@@ -19,6 +19,7 @@ import { NoAuthGuard } from './authguards/noauth.guard';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { RecipeListComponent } from './components/recipe/recipe-list/recipe-list.component';
 import { EditRecipeComponent } from './components/recipe/edit-recipe/edit-recipe.component';
+import { DeleteRecipeComponent } from './components/recipe/delete-recipe/delete-recipe.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { EditRecipeComponent } from './components/recipe/edit-recipe/edit-recipe
     ProfileComponent,
     RecipeComponent,
     RecipeListComponent,
-    EditRecipeComponent
+    EditRecipeComponent,
+    DeleteRecipeComponent
   ],
   imports: [
     BrowserModule,

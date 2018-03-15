@@ -10,8 +10,8 @@ import { RecipeService } from '../../../services/recipe.service';
 })
 export class EditRecipeComponent implements OnInit {
 
-  message
-  messageClass
+  message;
+  messageClass;
   processing = false;
   loading = true;
   recipe = {

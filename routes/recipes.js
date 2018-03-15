@@ -139,6 +139,46 @@ module.exports = ( router ) => {
         }
     })
 
+    //delete recipe post
+    router.delete('/deleteRecipe/:id', (req,res) => {
+        if (!req.params.id) {
+            res.json({ success: false, message: 'No Id provided'});
+        } else {
+            Recipe.findOne({ _id: req.params.id }, (err, recipe) => {
+                if (err) {
+                    res.json({ success: false, message: 'Invalid ID' });
+                } else {
+                    if(!recipe) {
+                        res.jason({ success: false, message: 'Recipe not found '});
+                    } else {
+                        //validate user
+                        User.findOne({ _id: req.decoded.userId }, (err, user )=> {
+                            if (err) {
+                                res.json({ success: false , message: err });
+                            } else {
+                                if(!user) {
+                                    res.json({ success: false, message: 'User not found'});
+                                } else {
+                                    if (user.username !== recipe.createdBy) {
+                                        res.json({ success: false, message: 'You are not authorized to delete this recipe'});
+                                    } else {
+                                        recipe.remove((err) => {
+                                            if(err) {
+                                                res.json({ success: false, message: err });
+                                            } else {
+                                                res.json({ success: true, message: 'Recipe deleted!' });
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    })
+
 
     return router;
 };

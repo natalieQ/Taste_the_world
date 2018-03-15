@@ -48,4 +48,10 @@ export class RecipeService {
     return this.http.put(this.domain + 'recipes/updateRecipe', recipe, this.options).map(res => res.json());
   }
 
+  //delete recipe
+  deleteRecipe(id) {
+    this.createAuthenticationHeaders();
+    return this.http.delete(this.domain + 'recipes/deleteRecipe/' + id, this.options).map(res => res.json());
+  }
+
 }

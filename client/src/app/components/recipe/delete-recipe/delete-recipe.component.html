@@ -1,0 +1,66 @@
+<h1 class="page-header">Delete Recipe</h1>
+
+<div class="show-hide-message" *ngIf="message" >
+    <div [ngClass]="messageClass">
+      {{ message }}
+    </div>
+</div>
+
+
+<div class="col-md-6" *ngIf="foundRecipe" >
+
+  <div class="modal-content">
+    <!-- header -->
+    <div class="modal-header">
+      <button type="button" name="button" class=" close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Confirm</h4>
+    </div>
+    <!-- body -->
+    <div class="modal-body">
+      <p>Are you sure you would like to delete this recipe post</p>
+    </div>
+    <!-- footer -->
+    <div class="modal-footer">
+      <!-- yes button -->
+      <button [disabled]="processing" type="button" name="button" 
+      class="btn btn-success" (click)="deleteRecipe()">Yes</button>
+      <!-- no button -->
+      <a routerLink="/recipe"><button [disabled]="processing" type="button" name="button" 
+      class="btn btn-danger">No</button></a>
+    </div>
+  </div>
+  <!-- end of model content -->
+  <br>
+  <!-- start of panel -->
+  <div class="panel panel-primary">
+    <!-- panel heading -->
+    <div class="panel-heading">
+      <h3 class="panel-title">{{ recipe.name }}</h3>
+    </div>
+    <!-- Panel Body -->
+    <div class="panel-body">
+      <!-- recipe image -->
+      <div class="img-responsive" class="img-rounded">
+          <img src="{{ recipe.imagePath }}" alt="">
+      </div>
+      <hr>
+      <!-- recipe description -->
+      <strong>Recipe Detail:  </strong>
+      <div>
+          {{ recipe.description }}
+      </div>
+      <hr>
+      <!-- recipe origin -->
+      <strong>Recipe Origin:  </strong>{{ recipe.origin }}
+    </div>
+    <!-- end of panel body -->
+    <div class="panel-footer">
+      <strong>Posted by: </strong>{{ recipe.createdBy }}
+      <br />
+      <strong>Date: </strong>{{ recipe.createdAt | date: 'MMM dd, yyyy' }}
+      <br />
+    </div>
+  </div>
+  <!-- end of panel -->
+
+</div>

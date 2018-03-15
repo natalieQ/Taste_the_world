@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RecipeComponent }from './components/recipe/recipe.component';
 import { EditRecipeComponent } from './components/recipe/edit-recipe/edit-recipe.component';
+import { DeleteRecipeComponent } from './components/recipe/delete-recipe/delete-recipe.component';
 
 import { AuthGuard } from './authguards/auth.guard';
 import { NoAuthGuard } from './authguards/noauth.guard';
@@ -38,6 +39,10 @@ const appRoutes: Routes = [
     },
     { path: 'edit-recipe/:id',
         component: EditRecipeComponent,
+        canActivate: [AuthGuard]         //access when logged in
+    },
+    { path: 'delete-recipe/:id',
+        component: DeleteRecipeComponent,
         canActivate: [AuthGuard]         //access when logged in
     },
     { path: '**', component: HomeComponent }
