@@ -149,7 +149,7 @@ module.exports = ( router ) => {
                     res.json({ success: false, message: 'Invalid ID' });
                 } else {
                     if(!recipe) {
-                        res.jason({ success: false, message: 'Recipe not found '});
+                        res.json({ success: false, message: 'Recipe not found '});
                     } else {
                         //validate user
                         User.findOne({ _id: req.decoded.userId }, (err, user )=> {
@@ -177,8 +177,136 @@ module.exports = ( router ) => {
                 }
             });
         }
-    })
+    });
 
+    //like recipe post
+    router.put('/likeRecipe', (req,res) => {
+        if (!req.body.id){     
+            res.json({ success: false, message: 'No ID provided' });
+        } else {
+            Recipe.findOne({ _id: req.body.id }, (err, recipe) => {
+                if (err) {
+                    res.json({ success: false, message: err});
+                } else {
+                    if (!recipe) {
+                        res.json({ success: false, message: 'Recipe not found'});
+                    } else {
+                        //validate the user like it != the user who post it
+                        User.findOne({ _id: req.decoded.userId }, (err, user)=> {
+                            if (err) {
+                                res.json({ success: false, message: err});
+                            } else {
+                                if (!user) {
+                                    res.json({ success: false, message: 'User not found'});
+                                } else {
+                                    if (user.username === recipe.createdBy) {
+                                        res.json({ success: false, message: 'You can not like your own post'});
+                                    } else {
+                                        //check if user have liked it already
+                                        if (recipe.likedBy.includes(user.username)) {
+                                            res.json({ success: false, message: 'You already liked the post'});
+                                        } else {
+                                            //check if user is in the dislike array
+                                            if (recipe.dislikedBy.includes(user.username)){ //user disliked before
+                                                recipe.dislikes--;
+                                                let idx = recipe.dislikedBy.indexOf(user.username);
+                                                recipe.dislikedBy.splice(idx, 1);  //remove user from dislikedBy
+                                                //add user to likedBy
+                                                recipe.likes++;
+                                                recipe.likedBy.push(user.username);
+                                                recipe.save((err) => {
+                                                    if (err){
+                                                        res.json({ success: false, message: 'not saved'});
+                                                    } else {
+                                                        res.json({ success: true, message: 'Recipe liked!'});
+                                                    }
+                                                });
+                                            } else { //user never like/dislike before
+                                                recipe.likes++;
+                                                recipe.likedBy.push(user.username);
+                                                recipe.save((err) => {
+                                                    if (err){
+                                                        res.json({ success: false, message: 'not saved'});
+                                                    } else {
+                                                        res.json({ success: true, message: 'Recipe liked!'});
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+
+   //dislike recipe post
+    router.put('/dislikeRecipe', (req,res) => {
+        if (!req.body.id){
+            res.json({ success: false, message: 'No ID provided' });
+        } else {
+            Recipe.findOne({ _id: req.body.id }, (err, recipe) => {
+                if (err) {
+                    res.json({ success: false, message: err});
+                } else {
+                    if (!recipe) {
+                        res.json({ success: false, message: 'Recipe not found'});
+                    } else {
+                        //validate the user like it != the user who post it
+                        User.findOne({ _id: req.decoded.userId }, (err, user) => {
+                            if (err) {
+                                res.json({ success: false, message: err});
+                            } else {
+                                if (!user) {
+                                    res.json({ success: false, message: 'User not found'});
+                                } else {
+                                    if (user.username === recipe.createdBy) {
+                                        res.json({ success: false, message: 'You can not dislike your own post'});
+                                    } else {
+                                        //check if user have disliked it already
+                                        if (recipe.dislikedBy.includes(user.username)) {
+                                            res.json({ success: false, message: 'You already disliked the post'});
+                                        } else {
+                                            //check if user is in the like array
+                                            if (recipe.likedBy.includes(user.username)){ //user liked before
+                                                recipe.likes--;
+                                                let idx = recipe.likedBy.indexOf(user.username);
+                                                recipe.likedBy.splice(idx, 1);  //remove user from likedBy
+                                                //add user to dislikedBy
+                                                recipe.dislikes++;
+                                                recipe.dislikedBy.push(user.username);
+                                                recipe.save((err) => {
+                                                    if (err){
+                                                        res.json({ success: false, message: 'not saved'});
+                                                    } else {
+                                                        res.json({ success: true, message: 'Recipe disliked!'});
+                                                    }
+                                                });
+                                            } else { //user never like/dislike before
+                                                recipe.dislikes++;
+                                                recipe.dislikedBy.push(user.username);
+                                                recipe.save((err) => {
+                                                    if (err){
+                                                        res.json({ success: false, message: 'not saved'});
+                                                    } else {
+                                                        res.json({ success: true, message: 'Recipe disliked!'});
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
 
     return router;
 };

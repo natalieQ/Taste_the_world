@@ -54,4 +54,17 @@ export class RecipeService {
     return this.http.delete(this.domain + 'recipes/deleteRecipe/' + id, this.options).map(res => res.json());
   }
 
+  //like recipe
+  likeRecipe(id) {
+    const data = { id: id };
+    return this.http.put(this.domain + 'recipes/likeRecipe', data, this.options).map(res => res.json());
+  }
+
+  //dislike recipe
+  dislikeRecipe(id) {
+    const data = { id: id };
+    return this.http.put(this.domain + 'recipes/dislikeRecipe', data, this.options).map(res => res.json());
+  }  
+
+
 }

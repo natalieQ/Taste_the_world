@@ -138,6 +138,19 @@ export class RecipeComponent implements OnInit {
     });
   }
 
+  //like post
+  likeRecipe(id) {
+    this.recipeService.likeRecipe(id).subscribe(data => {
+      this.getAllRecipes();  //retrieve all
+    });
+  }
+  //dislike post
+  dislikeRecipe(id) {
+    this.recipeService.dislikeRecipe(id).subscribe(data => {
+      this.getAllRecipes();  //retrieve all
+    });
+  }
+
   ngOnInit() {
     // Get profile username when page load
     this.authService.getProfile().subscribe(profile => {

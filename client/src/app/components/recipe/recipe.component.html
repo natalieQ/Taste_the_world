@@ -369,26 +369,26 @@
         <!-- Likes Dropdown  -->
         <div class="dropdown">
           <!-- Like Button -->
-          <button type="button" name="button" class="btn btn-sm btn-success" *ngIf="username != recipe.createdBy">
-          <span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Likes: 21</button>
+          <button [disabled]="recipe.likedBy.indexOf(username) > -1" type="button" name="button" class="btn btn-sm btn-success" 
+          *ngIf="username != recipe.createdBy" (click)="likeRecipe(recipe._id)">
+          <span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Likes: {{ recipe.likes }}</button>
           <!-- Dropdown Menu Items -->
           <div class="dropdown-content">
-            <a href="#">gugui3z24</a>
-            <a href="#">jinder</a>
-            <a href="#">patel</a>
+            <a [routerLink]="['/user/', liker]" *ngFor="let liker of recipe.likedBy">{{ liker }}</a>
+
           </div>
         </div>
   
         <!-- Dislikes Dropdown  -->
         <div class="dropdown">
           <!-- Dislike Button -->
-          <button type="button" name="button" class="btn btn-sm btn-warning" *ngIf="username != recipe.createdBy">
-          <span class="glyphicon glyphicon-thumbs-down">&nbsp;</span>Dislikes: 15</button>
+          <button [disabled]="recipe.dislikedBy.indexOf(username) > -1" type="button" name="button" class="btn btn-sm btn-warning" 
+          *ngIf="username != recipe.createdBy" (click)="dislikeRecipe(recipe._id)">
+          <span class="glyphicon glyphicon-thumbs-down">&nbsp;</span>Dislikes: {{ recipe.dislikes }}</button>
           <!-- Dropdown Menu Items -->
           <div class="dropdown-content">
-            <a href="#">gugui3z24</a>
-            <a href="#">jinder</a>
-            <a href="#">patel</a>
+              <a [routerLink]="['/user/', disliker]" *ngFor="let disliker of recipe.dislikedBy">{{ disliker }}</a>
+
           </div>
         </div>
   
