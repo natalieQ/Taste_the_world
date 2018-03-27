@@ -7,8 +7,17 @@
 
 ## Current Progress
 
-    * Set up the working environment including nodejs, angular, express and mongoDB
-    * Learned git and has started tracking this term project using git hub
-    * Spending time learning Angular and MongoDb. So not a lot of progress on the project content itself...
-    * Set up the basic routing to homepage and navbar....
-    * Started to build from user registration
+    # PLEASE RUN recipe-seeder.js FILE UNDER seed FOLDER FIRST
+
+    * Created CRUD routes for recipes
+    * After login/register, users can create recipes, edit/delete or view other's recipes 
+    * Users can also like / dislike recipes
+    * Added auth guard for routes. User can only view recipes when they are logged in 
+    * if user try to access uauthorized route. will show alert message, and then take user to the page they viewed before
+    * Added flash message when user log out, will take user to homepage
+
+## Next step 
+
+    * for the recipe model, there is a origin field (where the recipe comes from)
+    * In next step, I am planning to use D3.js to visualize the origin data in Map format so user can easily see where their recipes are from / or compare to all other users around the world
+    * Create a proper homepage for the website
