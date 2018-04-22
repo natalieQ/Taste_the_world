@@ -145,6 +145,105 @@ var recipes = [
         dislikes: 2,
         dislikedBy: ['Olivia','Emma']
     }),
+    new Recipe({
+        name: 'Brown Butter and Toffee Chocolate Chip Cookies',
+        description: 'Using chocolate wafers instead of chips is a cookie game-changer. They spread as they melt, creating thin pockets of chocolate in each layer, and stay much softer at room temperature.',
+        origin: 'United States',
+        imagePath: 'https://assets.bonappetit.com/photos/58e2844b65366d7ba90812ea/16:9/w_1028,c_limit/0417-Brown-Butter-Toffee-ChocolateChip%20Cookie-group.jpg',
+        createdBy: 'Harry',
+        likes: 4,
+        likedBy: ['Mike', 'Alex', 'Susan', 'James'],
+        dislikes: 2,
+        dislikedBy: ['Olivia','Emma']
+    }),
+    new Recipe({
+        name: 'Better-than-Takeout Stir-Fried Udon',
+        description: 'You can easily make this vegetarian—omit the pork and sub in 8 oz. shiitake or crimini mushrooms.',
+        origin: 'Japan',
+        imagePath: 'https://assets.bonappetit.com/photos/58c2c2bcb1bf59134d606c65/16:9/w_1028,c_limit/0317-ba-basics-stir-fried-udon-15.jpg',
+        createdBy: 'Harry',
+        likes: 4,
+        likedBy: ['Mike', 'Alex', 'Susan', 'James'],
+        dislikes: 2,
+        dislikedBy: ['Olivia','Emma']
+    }),
+    new Recipe({
+        name: 'No-Fail Roast Chicken with Lemon and Garlic',
+        description: 'This recipe eliminates one of the most common complaints about whole roast chickens—that it’s hard to know when they’re cooked all the way through.',
+        origin: 'Morocco',
+        imagePath: 'https://assets.bonappetit.com/photos/5a8749c98e5ab504d767b208/16:9/w_767,c_limit/no-fail-roast-chicken-with-lemon-and-garlic.jpg',
+        createdBy: 'Harry',
+        likes: 4,
+        likedBy: ['Mike', 'Alex', 'Susan', 'James'],
+        dislikes: 2,
+        dislikedBy: ['Olivia','Emma']
+    }),
+    new Recipe({
+        name: 'Jammy Soft-Boiled Eggs',
+        description: 'To make these soft-boiled eggs, you dont have to wait for them to come to room temperature. Go ahead and cook them straight out of the fridge. ',
+        origin: 'United States',
+        imagePath: 'https://assets.bonappetit.com/photos/58c95c88aafcc51ad9a32bc9/16:9/w_1028,c_limit/jammy-soft-boiled-eggs.jpg',
+        createdBy: 'Harry',
+        likes: 4,
+        likedBy: ['Mike', 'Alex', 'Susan', 'James'],
+        dislikes: 2,
+        dislikedBy: ['Olivia','Emma']
+    }),  
+    new Recipe({
+        name: 'BAs Best Chicken and Dumplings',
+        description: 'To make these soft-boiled eggs, you dont have to wait for them to come to room temperature. Go ahead and cook them straight out of the fridge. ',
+        origin: 'China',
+        imagePath: 'https://assets.bonappetit.com/photos/58a35448476e2c92337165d3/16:9/w_1028,c_limit/bas-best-chicken-and-dumplings.jpg',
+        createdBy: 'Bobby',
+        likes: 4,
+        likedBy: ['Mike', 'Alex', 'Susan', 'James'],
+        dislikes: 2,
+        dislikedBy: ['Olivia','Emma']
+    }),  
+    new Recipe({
+        name: 'One-Skillet Chicken with Buttery Orzo',
+        description: 'Why use a bunch of pots and pans when fennel, orzo, and chicken can be cooked in one?',
+        origin: 'France',
+        imagePath: 'https://www.bonappetit.com/recipe/one-skillet-chicken-with-buttery-orzo',
+        createdBy: 'Bobby',
+        likes: 4,
+        likedBy: ['Mike', 'Alex', 'Susan', 'James'],
+        dislikes: 2,
+        dislikedBy: ['Olivia','Emma']
+    }),  
+    new Recipe({
+        name: 'Moon Milk',
+        description: 'In Ayurveda (one of the oldest systems of natural healing in the world), warm milk is a common remedy for sleeplessness.',
+        origin: 'India',
+        imagePath: 'https://assets.bonappetit.com/photos/58791b880d1bcb166daea5c0/16:9/w_1028,c_limit/moon-milk.jpg',
+        createdBy: 'Moon',
+        likes: 4,
+        likedBy: ['Mike', 'Alex', 'Susan', 'James'],
+        dislikes: 2,
+        dislikedBy: ['Olivia','Emma']
+    }),  
+    new Recipe({
+        name: 'Morning Buns',
+        description: 'Too many morning buns for your crowd? This recipe halves easily. This is part of BAs Best, a collection of our essential recipes.',
+        origin: 'Germany',
+        imagePath: 'https://assets.bonappetit.com/photos/58ef9815f9ef2707d8e770af/16:9/w_1028,c_limit/morning-buns.jpg',
+        createdBy: 'Cindy',
+        likes: 4,
+        likedBy: ['Mike', 'Alex', 'Susan', 'James'],
+        dislikes: 2,
+        dislikedBy: ['Olivia','Emma']
+    }),  
+    new Recipe({
+        name: 'Ooey Gooey Butter Cake',
+        description: 'This cake is a legendary Depression-era mistake.',
+        origin: 'Greece',
+        imagePath: 'https://assets.bonappetit.com/photos/58b705c4f759ff7d01f5a0c0/16:9/w_1028,c_limit/nostalgia-week-ooey-gooey-butter-cake-buttercake.jpg',
+        createdBy: 'Hayley',
+        likes: 4,
+        likedBy: ['Mike', 'Alex', 'Susan', 'James'],
+        dislikes: 2,
+        dislikedBy: ['Olivia','Emma']
+    })
 ];
 var done = 0;
 for(var i=0; i<recipes.length; i++){
