@@ -11,7 +11,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { RecipeService } from './services/recipe.service';
-import { PieDataService } from './components/dashboard/_services/pie-data.service';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
@@ -23,6 +22,8 @@ import { EditRecipeComponent } from './components/recipe/edit-recipe/edit-recipe
 import { DeleteRecipeComponent } from './components/recipe/delete-recipe/delete-recipe.component';
 import { PieChartComponent } from './components/dashboard/pie-chart/pie-chart.component';
 import { SumPipe } from './components/dashboard/_pipes/sum.pipe';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -47,9 +48,10 @@ import { SumPipe } from './components/dashboard/_pipes/sum.pipe';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    FlexLayoutModule
   ],
-  providers: [AuthService,FlashMessagesService, AuthGuard, NoAuthGuard, RecipeService, PieDataService],
+  providers: [AuthService,FlashMessagesService, AuthGuard, NoAuthGuard, RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

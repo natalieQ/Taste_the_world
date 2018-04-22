@@ -78,7 +78,6 @@ module.exports = ( router ) => {
                                 name: key,
                                 count: counts[key]
                             };
-                            console.log(origin);
                             origins.push(origin);
                         }
                      }

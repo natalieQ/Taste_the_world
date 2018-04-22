@@ -70,7 +70,7 @@ createForm() {
           if (this.previousUrl) {   // redirect to page user was on previously
             this.router.navigate([this.previousUrl]); 
           } else {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/dashboard']);
           }
         }, 2000);
       }

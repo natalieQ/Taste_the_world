@@ -44,6 +44,12 @@ export class PieChartComponent implements OnInit, OnChanges {
   ngOnInit() {
     // create chart and render
     this.createChart();
+
+    // Initial update
+    this.updateChart(true);
+
+    // For animation purpose we load the real value after a second
+    setTimeout(() => this.updateChart(false), 50);
   }
 
   ngOnChanges() {
@@ -86,6 +92,7 @@ export class PieChartComponent implements OnInit, OnChanges {
   updateChart = (firstRun: boolean) => {
     const vm = this;
 
+    this.slices = this.data;
     this.labels = this.slices.map(slice => slice.name);
     this.colourSlices = this.slices.map(slice => this.pieColours(slice.name));
 

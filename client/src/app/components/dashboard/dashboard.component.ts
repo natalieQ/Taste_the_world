@@ -11,7 +11,7 @@ import * as d3 from "d3";
 })
 export class DashboardComponent implements OnInit {
 
-  data: Array<any>;
+  data = [];
   colours = ['#ff9999', '#ffb399', '#ffcc99', '#ffe699', '#e6ff99', '#99ffb3', '#99ffe6', '#99e6ff','#99b3ff', '#b399ff', '#ff99e6'];
 
   constructor(
@@ -21,17 +21,14 @@ export class DashboardComponent implements OnInit {
 
   //get recipe origins and the count
   getAllOrigins() {
-    this.recipeService.getAllOrigins().subscribe(data => {
-      console.log(data);
-      this.data = data.origins;
+    this.recipeService.getAllOrigins().subscribe(res => {
+      this.data = res.origins;
     });
   }
 
 
   ngOnInit() {
     this.getAllOrigins();
-    console.log('Hello');
-    console.log(this.data);
   }
 
 }
