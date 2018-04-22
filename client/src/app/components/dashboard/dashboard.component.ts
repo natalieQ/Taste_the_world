@@ -12,7 +12,9 @@ import * as d3 from "d3";
 export class DashboardComponent implements OnInit {
 
   data = [];
-  colours = ['#ff9999', '#ffb399', '#ffcc99', '#ffe699', '#e6ff99', '#99ffb3', '#99ffe6', '#99e6ff','#99b3ff', '#b399ff', '#ff99e6'];
+  colours = ['#ff9999', '#ffb399', '#ffcc99', '#ffe699',
+              '#e6ff99', '#b3ff99', '#99ffb3', '#99ffe6', '#99e6ff',
+              '#99b3ff', '#b399ff', '#e699ff', '#ff99cc'];
 
   constructor(
     private recipeService: RecipeService,

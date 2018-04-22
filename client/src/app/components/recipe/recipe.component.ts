@@ -17,7 +17,7 @@ export class RecipeComponent implements OnInit {
   loadingPosts = false;
   processing = false;
   username;
-  recipePosts;  //all recipe posts in database
+  recipePosts = [];  //all recipe posts in database
 
   constructor(
     private formBuilder: FormBuilder,
@@ -135,6 +135,7 @@ export class RecipeComponent implements OnInit {
   getAllRecipes() {
     this.recipeService.getAllRecipes().subscribe(data => {
       this.recipePosts = data.recipes;
+      this.recipePosts = this.recipePosts.reverse();
     });
   }
 
