@@ -57,6 +57,37 @@ module.exports = ( router ) => {
             }
         }).sort({ '_id': -1 }); //sort by created time, put newest one on the top
     });
+
+    //get all recipe origins and counts
+    router.get('/allOrigins', (req, res) => {
+        Recipe.find({}, (err, recipes) => {
+            if (err) {
+                res.json({ success: false, message: err });
+            } else {
+                if(!recipes) {  //no recipes found
+                    res.json({ success: false, message: 'No recipes found' });
+                } else {
+                    const counts = {};
+                    for (let i=0; i<recipes.length; i++){
+                        counts[recipes[i].origin] = (counts[recipes[i].origin] || 0) + 1;
+                    }
+                    const origins = [];
+                    for (var key in counts) {
+                        if (counts.hasOwnProperty(key)) {
+                            let origin = {
+                                name: key,
+                                count: counts[key]
+                            };
+                            console.log(origin);
+                            origins.push(origin);
+                        }
+                     }
+    
+                    res.json({ success: true, origins: origins });
+                }
+            }
+        });        
+    });
     
     //get single recipe by id (for udpate)
     router.get('/singleRecipe/:id',(req,res) => {

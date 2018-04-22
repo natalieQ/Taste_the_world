@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PieDataService } from './_services/pie-data.service';
+import { RecipeService } from '../../services/recipe.service';
+import { AuthService } from '../../services/auth.service';
 import * as d3 from "d3";
 
 
@@ -11,16 +12,26 @@ import * as d3 from "d3";
 export class DashboardComponent implements OnInit {
 
   data: Array<any>;
-  colours = ['#57A1C6', '#4FC3F7', '#36D7B7'];
+  colours = ['#ff9999', '#ffb399', '#ffcc99', '#ffe699', '#e6ff99', '#99ffb3', '#99ffe6', '#99e6ff','#99b3ff', '#b399ff', '#ff99e6'];
 
   constructor(
-    private pieDataService: PieDataService
+    private recipeService: RecipeService,
+    private authService: AuthService,
   ) { }
 
+  //get recipe origins and the count
+  getAllOrigins() {
+    this.recipeService.getAllOrigins().subscribe(data => {
+      console.log(data);
+      this.data = data.origins;
+    });
+  }
 
 
   ngOnInit() {
-    this.data = this.pieDataService.generateData(30);
+    this.getAllOrigins();
+    console.log('Hello');
+    console.log(this.data);
   }
 
 }

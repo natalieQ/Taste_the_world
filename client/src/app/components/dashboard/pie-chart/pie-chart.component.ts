@@ -44,11 +44,6 @@ export class PieChartComponent implements OnInit, OnChanges {
   ngOnInit() {
     // create chart and render
     this.createChart();
-
-    // Initial update
-    this.updateChart(true);
-
-    setTimeout(() => this.updateChart(false), 50);
   }
 
   ngOnChanges() {
@@ -91,11 +86,10 @@ export class PieChartComponent implements OnInit, OnChanges {
   updateChart = (firstRun: boolean) => {
     const vm = this;
 
-    this.slices = this.updateSlices(this.data);
-    this.labels = this.slices.map(slice => slice.familyType);
-    this.colourSlices = this.slices.map(slice => this.pieColours(slice.familyType));
+    this.labels = this.slices.map(slice => slice.name);
+    this.colourSlices = this.slices.map(slice => this.pieColours(slice.name));
 
-    this.values = firstRun ? [0, 0, 0] : _.toArray(this.slices).map(slice => slice.amount);
+    this.values = firstRun ? [0, 0, 0] : _.toArray(this.slices).map(slice => slice.count);
 
     this.pieGenerator = d3.pie().sort(null).value((d: number) => d)(this.values);
 
@@ -180,30 +174,4 @@ export class PieChartComponent implements OnInit, OnChanges {
     return Math.round( a / b * 100) + '%';
   }
 
-  updateSlices = (newData: Array<any>): Array<any> => {
-    const queriesByFamilyTypes = _.groupBy(_.sortBy(newData, 'familyType'), 'familyType');
-    const results = [];
-
-    Object.keys(queriesByFamilyTypes).map((familyType) => {
-      results.push({
-        familyType: familyType,
-        amount: queriesByFamilyTypes[familyType].length,
-        types: []
-      });
-    });
-
-    results.map(result => {
-      const queries = newData.filter(query => query.familyType === result.familyType);
-      const queriesByTypes = _.groupBy(_.sortBy(queries, 'type'), 'type');
-
-      Object.keys(queriesByTypes).map((type) => {
-        result.types.push({
-          type: type,
-          amount: queriesByTypes[type].length,
-        });
-      });
-    });
-
-    return results;
-  }
 }

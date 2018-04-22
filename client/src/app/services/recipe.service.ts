@@ -36,6 +36,12 @@ export class RecipeService {
     return this.http.get(this.domain + 'recipes/allRecipes', this.options).map(res => res.json());
   }
 
+  //get recipe origins and counts
+  getAllOrigins() {
+    this.createAuthenticationHeaders();
+    return this.http.get(this.domain + 'recipes/allOrigins', this.options).map(res => res.json());
+  }
+
   //retrieve single recipe by id
   getSingleRecipe(id) {
     this.createAuthenticationHeaders();
