@@ -42,13 +42,13 @@ export class PieChartComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
-    // create chart and render
+
     this.createChart();
 
     // Initial update
     this.updateChart(true);
 
-    // For animation purpose we load the real value after a second
+    // animation(load the data after a second)
     setTimeout(() => this.updateChart(false), 50);
   }
 
