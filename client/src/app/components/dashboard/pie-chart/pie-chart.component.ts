@@ -53,12 +53,12 @@ export class PieChartComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    // update chart on data input value change
+    
     if (this.svg) this.updateChart(false);
   }
 
   createChart = () => {
-    // chart configuration
+    // chart config
     this.hostElement = this.chartContainer.nativeElement;
 
     this.radius = Math.min(this.hostElement.offsetWidth, this.hostElement.offsetHeight) / 2;
@@ -68,12 +68,10 @@ export class PieChartComponent implements OnInit, OnChanges {
     this.pieColours = this.colours ? d3.scaleOrdinal().range(this.colours) : d3.scaleOrdinal();
     this.tooltip = this.elRef.nativeElement.querySelector('.tooltip');
 
-    // create a pie generator and tell it where to get numeric values from and whether sorting is needed or not
-    // this is just a function that will be called to obtain data prior binding that data to elements of the chart
+  
     this.pieGenerator = d3.pie().sort(null).value((d: number) => d)([0, 0, 0]);
 
-    // create an arc generator and configure it
-    // this is just a function that will be called to obtain data prior binding that data to arc elements of the chart
+    //arc generator
     this.arcGenerator = d3.arc()
       .innerRadius(innerRadius)
       .outerRadius(outerRadius);
@@ -82,7 +80,7 @@ export class PieChartComponent implements OnInit, OnChanges {
       .innerRadius(innerRadius)
       .outerRadius(hoverRadius);
 
-    // create svg element, configure dimentions and centre and add to DOM
+    // crate svg and add to dom
     this.svg = d3.select(this.hostElement).append('svg')
       .attr('viewBox', '0, 0, ' + this.hostElement.offsetWidth + ', ' + this.hostElement.offsetHeight)
       .append('g')
@@ -114,9 +112,6 @@ export class PieChartComponent implements OnInit, OnChanges {
       .on('mouseover', this.mouseover)
       .on('mouseout', this.mouseout);
 
-    // configure a transition to play on d elements of a path
-    // whenever new values are passed in, the values and the previously stored values will be used
-    // to compute the transition using interpolation
     d3.select(this.hostElement).selectAll('path')
       .data(this.pieGenerator)
       .attr('fill', (datum, index) => this.pieColours(this.labels[index]))
