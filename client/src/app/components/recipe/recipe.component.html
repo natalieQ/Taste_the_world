@@ -374,7 +374,7 @@
           <span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Likes: {{ recipe.likes }}</button>
           <!-- Dropdown Menu Items -->
           <div class="dropdown-content">
-            <a [routerLink]="['/user/', liker]" *ngFor="let liker of recipe.likedBy">{{ liker }}</a>
+            <a *ngFor="let liker of recipe.likedBy">{{ liker }}</a>
 
           </div>
         </div>
@@ -387,7 +387,7 @@
           <span class="glyphicon glyphicon-thumbs-down">&nbsp;</span>Dislikes: {{ recipe.dislikes }}</button>
           <!-- Dropdown Menu Items -->
           <div class="dropdown-content">
-              <a [routerLink]="['/user/', disliker]" *ngFor="let disliker of recipe.dislikedBy">{{ disliker }}</a>
+              <a *ngFor="let disliker of recipe.dislikedBy">{{ disliker }}</a>
 
           </div>
         </div>
